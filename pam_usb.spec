@@ -29,7 +29,7 @@ It can also work with other devices, such as floppy disks or cdroms.
 %setup -q -a1
 
 %build
-%make CFLAGS="%optflags `pkg-config --cflags dbus-1 hal libxml-2.0`"
+%make CFLAGS="%optflags -fPIC `pkg-config --cflags dbus-1 hal libxml-2.0`"
 
 %install
 rm -rf $RPM_BUILD_ROOT
