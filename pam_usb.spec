@@ -1,6 +1,6 @@
 %define	name	pam_usb
-%define	version	0.3.3
-%define	rel	2
+%define	version	0.4.0
+%define	rel	1
 %define	release	%mkrel %{rel}
 
 Summary:	PAM module through external storage
@@ -28,34 +28,21 @@ It can also work with other devices, such as floppy disks or cdroms.
 %setup -q -a1
 
 %build
-%make CFLAGS="%optflags -I ../../src -fPIC"
+%make CFLAGS="%optflags `pkg-config --cflags dbus-1 hal libxml-2.0`"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-mkdir -p $RPM_BUILD_ROOT/%{_lib}/security $RPM_BUILD_ROOT%{_bindir} $RPM_BUILD_ROOT%{_mandir}/man1
-mkdir -p $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/usbhotplug
-mkdir -p $RPM_BUILD_ROOT%{_defaultdocdir}/%{name}-%{version}/html
-
-%makeinstall_std PAM_MODULES=$RPM_BUILD_ROOT/%{_lib}/security
-
-# (blino) use udev rule to replace deprecated hotplug.d script
-rm -f $RPM_BUILD_ROOT%{_sysconfdir}/hotplug.d/default/pamusb.hotplug
-install -d -m 755 $RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d
-cat >$RPM_BUILD_ROOT%{_sysconfdir}/udev/rules.d/pamusb.rules <<EOF
-SUBSYSTEM=="usb", RUN+="%{_bindir}/usbhotplug usb"
-EOF
+%makeinstall_std DOCS_DEST=$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+cp -a html $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc html/* AUTHORS Changelog README
+%doc %{_docdir}/%{name}-%{version}
 %defattr(-,root,root)
-/%{_lib}/security/*
+/%{_lib}/security/%{name}.so
 %{_bindir}/*
-%{_mandir}/*/*
-%{_sysconfdir}/udev/rules.d/pamusb.rules
-%{_sysconfdir}/pam_usb/handlers/xlock.sh
-%config(noreplace) %{_sysconfdir}/pam_usb/hotplug.conf
-%config(noreplace) %{_sysconfdir}/pam.d/usbhotplug/usbhotplug.pam
+%{_mandir}/man1/*.1*
+%{_sysconfdir}/pamusb.conf
