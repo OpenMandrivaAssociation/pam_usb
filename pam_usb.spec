@@ -33,8 +33,12 @@ It can also work with other devices, such as floppy disks or cdroms.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%makeinstall_std DOCS_DEST=$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+%makeinstall_std \
+  PAM_USB_DEST=$RPM_BUILD_ROOT/%{_lib}/security \
+  DOCS_DEST=$RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+
 cp -a html $RPM_BUILD_ROOT%{_docdir}/%{name}-%{version}
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
