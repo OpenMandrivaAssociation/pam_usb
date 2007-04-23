@@ -13,6 +13,7 @@ Source1:	%{name}-doc.tar.bz2
 License:	GPL
 Group:		System/Libraries
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	dbus-devel libxml2-devel hal-devel
 BuildRequires:	pam-devel 
 BuildRequires:  openssl-devel 
 BuildRequires:  readline-devel
