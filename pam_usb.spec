@@ -1,5 +1,5 @@
 %define	name	pam_usb
-%define	version	0.4.0
+%define	version	0.4.1
 %define	rel	1
 %define	release	%mkrel %{rel}
 
