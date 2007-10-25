@@ -1,5 +1,5 @@
 %define	name	pam_usb
-%define	version	0.4.1
+%define	version	0.4.2
 %define	rel	1
 %define	release	%mkrel %{rel}
 
@@ -8,7 +8,7 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 URL:		http://www.pamusb.org/
-Source0:	http://www.pamusb.org/releases/%{name}-%{version}.tar.bz2
+Source0:	http://ovh.dl.sourceforge.net/sourceforge/pamusb/%{name}-%{version}.tar.gz
 Source1:	%{name}-doc.tar.bz2
 License:	GPL
 Group:		System/Libraries
