@@ -1,6 +1,6 @@
 %define	name	pam_usb
 %define	version	0.4.2
-%define	rel	2
+%define	rel	3
 %define	release	%mkrel %{rel}
 
 Summary:	PAM module through external storage
