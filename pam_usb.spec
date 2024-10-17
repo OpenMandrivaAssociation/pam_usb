@@ -7,7 +7,7 @@ Summary:	PAM module through external storage
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-URL:		http://www.pamusb.org/
+URL:		https://www.pamusb.org/
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/pamusb/%{name}-%{version}.tar.gz
 Source1:	%{name}-doc.tar.bz2
 License:	GPLv2+
