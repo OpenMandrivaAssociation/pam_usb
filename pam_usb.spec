@@ -12,6 +12,7 @@ Source0:	http://ovh.dl.sourceforge.net/sourceforge/pamusb/%{name}-%{version}.tar
 Source1:	%{name}-doc.tar.bz2
 License:	GPLv2+
 Group:		System/Libraries
+BuildRequires:	make
 BuildRequires:	dbus-devel pkgconfig(libxml-2.0)
 BuildRequires:	pam-devel 
 BuildRequires:  pkgconfig(openssl) 
