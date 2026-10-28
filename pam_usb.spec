@@ -27,6 +27,8 @@ It can also work with other devices, such as floppy disks or cdroms.
 
 %prep
 %setup -q -a1
+# LDFLAGS carries --no-undefined. The module calls pam_get_item and pam_get_user.
+sed -i 's/`pkg-config --libs dbus-1`/`pkg-config --libs dbus-1` -lpam/' Makefile
 
 %build
 # The makefile only appends to CFLAGS. Without the distribution flags
