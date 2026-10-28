@@ -29,6 +29,10 @@ It can also work with other devices, such as floppy disks or cdroms.
 %setup -q -a1
 
 %build
+# The makefile only appends to CFLAGS. Without the distribution flags
+# the binaries have no debug info and the debugsource package is empty.
+export CFLAGS="%{optflags}"
+export LDFLAGS="%{build_ldflags}"
 %make
 
 %install
